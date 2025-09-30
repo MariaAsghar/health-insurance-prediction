@@ -101,8 +101,8 @@ if predict_btn:
     fig, axs = plt.subplots(1, 4, figsize=(6*n_features, 6))
     for i, feature in enumerate(features):
         sns.histplot(df[feature], bins=30, kde=True, color='skyblue', ax=axs[i])
-        axs[i].axvline(user_inputs[feature], color='red', linestyle='--', linewidth=2)
-        axs[i].text(user_inputs[feature], axs[i].get_ylim()[1]*0.9,f'Your {feature}:\n{user_inputs[feature]:.2f}',color='red', fontsize=10, ha='center')
+        axs[i].axvline(user_inputs[feature], color='yellow', linestyle='--', linewidth=2)
+        axs[i].text(user_inputs[feature], axs[i].get_ylim()[1]*0.9,f'Your {feature}:\n{user_inputs[feature]:.2f}',color='darkblue', fontsize=10, ha='left')
         axs[i].set_title(f"{feature.capitalize()} Distribution")
         axs[i].set_xlabel(feature.capitalize())
         axs[i].set_ylabel("Frequency")
