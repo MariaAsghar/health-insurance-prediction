@@ -99,8 +99,7 @@ features = list(user_inputs.keys())
 n_features = len(features)
 
 fig, axs = plt.subplots(1, n_features, figsize=(6*n_features, 6))
-
- for i, feature in enumerate(features):
+for i, feature in enumerate(features):
     sns.histplot(df[feature], bins=30, kde=True, color='skyblue', ax=axs[i])
     axs[i].axvline(user_inputs[feature], color='red', linestyle='--', linewidth=2)
     axs[i].text(user_inputs[feature], axs[i].get_ylim()[1]*0.9,f'Your {feature}:\n{user_inputs[feature]:.2f}',color='red', fontsize=10, ha='center')
