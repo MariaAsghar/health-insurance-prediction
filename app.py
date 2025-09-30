@@ -58,26 +58,26 @@ with left_col:
     predict_btn = st.button("🔍 Predict Insurance Charges", use_container_width=True)
 
 # --- RIGHT: Output & Visualization ---
-with right_col:
-    if predict_btn:
-        # Prepare input data for prediction
-        input_df = pd.DataFrame({
-            'age': [age],
-            'sex': [sex],
-            'bmi': [bmi],
-            'children': [children],
-            'smoker': [smoker],
-            'region': [region]
+if predict_btn:
+# Prepare input data for prediction
+input_df = pd.DataFrame({
+    'age': [age],
+    'sex': [sex],
+    'bmi': [bmi],
+    'children': [children],
+    'smoker': [smoker],
+    'region': [region]
         })
 
-        prediction = model.predict(input_df)[0]
+prediction = model.predict(input_df)[0]
 
-st.markdown(f"""
-    <div style='background-color: #e0f7fa; padding: 20px; border-radius: 8px; margin-bottom: 20px;'>
-         <h3 style='color: #00796b;'>💡 Estimated Insurance Charges:</h3>
-         <h1 style='color: #4a148c;'>${prediction:,.2f}</h1>
-    </div>
-""", unsafe_allow_html=True)
+with right_col:
+    st.markdown(f"""
+        <div style='background-color: #e0f7fa; padding: 20px; border-radius: 8px; margin-bottom: 20px;'>
+             <h3 style='color: #00796b;'>💡 Estimated Insurance Charges:</h3>
+             <h1 style='color: #4a148c;'>${prediction:,.2f}</h1>
+        </div>
+    """, unsafe_allow_html=True)
 
 st.markdown("""
     <p style='color:#555555; font-size:16px;'>
