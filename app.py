@@ -84,11 +84,11 @@ with right_col:
         """, unsafe_allow_html=True)
 
         # Load dataset to plot distributions (make sure you have df loaded in your app)
-        # Here you should load your dataset. Example: df = pd.read_csv("insurance.csv")
-        # For demo, I'm assuming 'df' is preloaded globally or add code to load it here.
+       @st.cache_data
+        def load_data():
+            return pd.read_pickle("cleaned_data.pkl")
 
-        # Example: Uncomment below line to load your dataset if you have it saved
-        # df = pd.read_csv("insurance.csv")
+        df = load_data()
 
         # If df not defined, show warning
         if 'df' not in globals():
