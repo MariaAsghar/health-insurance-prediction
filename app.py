@@ -98,7 +98,7 @@ if predict_btn:
     features = list(user_inputs.keys())
     n_features = len(features)
     
-    fig, axs = plt.subplots(1, n_features, figsize=(6*n_features, 6))
+    fig, axs = plt.subplots(1, 4, figsize=(6*n_features, 6))
     for i, feature in enumerate(features):
         sns.histplot(df[feature], bins=30, kde=True, color='skyblue', ax=axs[i])
         axs[i].axvline(user_inputs[feature], color='red', linestyle='--', linewidth=2)
