@@ -81,7 +81,7 @@ if predict_btn:
     
     st.markdown("""
         <p style='color:#555555; font-size:16px;'>
-                Below are the distributions of important features in the dataset. The red dashed line shows your input value compared to the overall population.
+                Below are the distributions of important features in the dataset. The yellow dashed line shows your input value compared to the overall population of data that was used to train the model.
         </p>
     """, unsafe_allow_html=True)
     
