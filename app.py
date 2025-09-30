@@ -15,7 +15,7 @@ st.set_page_config(
 # --- Load Model ---
 @st.cache_resource
 def load_model():
-    with open("gbm_model.pkl", "rb") as f:
+    with open("tunned_gbm_model.pkl", "rb") as f:
         model = pickle.load(f)
     return model
 
@@ -113,3 +113,4 @@ with right_col:
 # --- Footer ---
 st.markdown("""<hr style='border:1px solid #dee2e6'/>""", unsafe_allow_html=True)
 st.markdown("<small style='color:#6c757d;'>Built with 💙 using Streamlit</small>", unsafe_allow_html=True)
+
