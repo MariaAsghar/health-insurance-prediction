@@ -107,8 +107,8 @@ if predict_btn:
         axs[i].set_xlabel(feature.capitalize())
         axs[i].set_ylabel("Frequency")
     
-        plt.tight_layout()
-        st.pyplot(fig)
+    plt.tight_layout()
+    st.pyplot(fig)
 
 # --- Footer ---
 st.markdown("""<hr style='border:1px solid #dee2e6'/>""", unsafe_allow_html=True)
