@@ -21,7 +21,9 @@ def load_model():
     return model
 
 model = load_model()
-
+@st.cache_data
+def load_data():
+    return pd.read_pickle("cleaned_data.pkl")
 # --- Page Title ---
 st.markdown("""
     <h2 style='color:#3E3E3E;'>💰 Insurance Charges Prediction App</h2>
@@ -84,9 +86,7 @@ with right_col:
         """, unsafe_allow_html=True)
 
         # Load dataset to plot distributions (make sure you have df loaded in your app)
-       @st.cache_data
-        def load_data():
-            return pd.read_pickle("cleaned_data.pkl")
+      
 
         df = load_data()
 
