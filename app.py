@@ -59,56 +59,56 @@ with left_col:
 
 # --- RIGHT: Output & Visualization ---
 if predict_btn:
-# Prepare input data for prediction
-input_df = pd.DataFrame({
-    'age': [age],
-    'sex': [sex],
-    'bmi': [bmi],
-    'children': [children],
-    'smoker': [smoker],
-    'region': [region]
-        })
+    # Prepare input data for prediction
+    input_df = pd.DataFrame({
+        'age': [age],
+        'sex': [sex],
+        'bmi': [bmi],
+        'children': [children],
+        'smoker': [smoker],
+        'region': [region]
+            })
+    
+    prediction = model.predict(input_df)[0]
 
-prediction = model.predict(input_df)[0]
-
-with right_col:
-    st.markdown(f"""
-        <div style='background-color: #e0f7fa; padding: 20px; border-radius: 8px; margin-bottom: 20px;'>
-             <h3 style='color: #00796b;'>💡 Estimated Insurance Charges:</h3>
-             <h1 style='color: #4a148c;'>${prediction:,.2f}</h1>
-        </div>
+    with right_col:
+        st.markdown(f"""
+            <div style='background-color: #e0f7fa; padding: 20px; border-radius: 8px; margin-bottom: 20px;'>
+                 <h3 style='color: #00796b;'>💡 Estimated Insurance Charges:</h3>
+                 <h1 style='color: #4a148c;'>${prediction:,.2f}</h1>
+            </div>
+        """, unsafe_allow_html=True)
+    
+    st.markdown("""
+        <p style='color:#555555; font-size:16px;'>
+                Below are the distributions of important features in the dataset. The red dashed line shows your input value compared to the overall population.
+        </p>
     """, unsafe_allow_html=True)
-
-st.markdown("""
-    <p style='color:#555555; font-size:16px;'>
-            Below are the distributions of important features in the dataset. The red dashed line shows your input value compared to the overall population.
-    </p>
-""", unsafe_allow_html=True)
-
-        # Load dataset to plot distributions (make sure you have df loaded in your app)
-      
-
-df = load_data()
-
- # If df not defined, show warning
-if 'df' not in globals():
-    st.warning("Dataset (df) is not loaded. Can't show feature distributions.")
-else:
-    user_inputs = {'age': age,'bmi': bmi,'children': children, 'charges': prediction  }
-features = list(user_inputs.keys())
-n_features = len(features)
-
-fig, axs = plt.subplots(1, n_features, figsize=(6*n_features, 6))
-for i, feature in enumerate(features):
-    sns.histplot(df[feature], bins=30, kde=True, color='skyblue', ax=axs[i])
-    axs[i].axvline(user_inputs[feature], color='red', linestyle='--', linewidth=2)
-    axs[i].text(user_inputs[feature], axs[i].get_ylim()[1]*0.9,f'Your {feature}:\n{user_inputs[feature]:.2f}',color='red', fontsize=10, ha='center')
-    axs[i].set_title(f"{feature.capitalize()} Distribution")
-    axs[i].set_xlabel(feature.capitalize())
-    axs[i].set_ylabel("Frequency")
-
-    plt.tight_layout()
-    st.pyplot(fig)
+    
+            # Load dataset to plot distributions (make sure you have df loaded in your app)
+          
+    
+    df = load_data()
+    
+     # If df not defined, show warning
+    if 'df' not in globals():
+        st.warning("Dataset (df) is not loaded. Can't show feature distributions.")
+    else:
+        user_inputs = {'age': age,'bmi': bmi,'children': children, 'charges': prediction  }
+    features = list(user_inputs.keys())
+    n_features = len(features)
+    
+    fig, axs = plt.subplots(1, n_features, figsize=(6*n_features, 6))
+    for i, feature in enumerate(features):
+        sns.histplot(df[feature], bins=30, kde=True, color='skyblue', ax=axs[i])
+        axs[i].axvline(user_inputs[feature], color='red', linestyle='--', linewidth=2)
+        axs[i].text(user_inputs[feature], axs[i].get_ylim()[1]*0.9,f'Your {feature}:\n{user_inputs[feature]:.2f}',color='red', fontsize=10, ha='center')
+        axs[i].set_title(f"{feature.capitalize()} Distribution")
+        axs[i].set_xlabel(feature.capitalize())
+        axs[i].set_ylabel("Frequency")
+    
+        plt.tight_layout()
+        st.pyplot(fig)
 
 # --- Footer ---
 st.markdown("""<hr style='border:1px solid #dee2e6'/>""", unsafe_allow_html=True)
